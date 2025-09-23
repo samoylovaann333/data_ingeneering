@@ -1,22 +1,19 @@
-<<<<<<< HEAD
-=======
 [project]
->>>>>>> 234c1f0 (Добавлен скриншот вывода raw_data.head(10))
 name = "data-loader-project"
 version = "0.1.0"
-description = ""
+description = "Data loader for Google Drive"
 authors = [
-    {name = "Anna"}
-]
-readme = "README.md"
-requires-python = ">=3.13"
-dependencies = [
-    "pandas (>=2.3.2,<3.0.0)",
-    "jupyterlab (>=4.4.7,<5.0.0)",
-    "matplotlib (>=3.10.6,<4.0.0)",
-    "wget (>=3.2,<4.0)"
+    {name = "Anna", email = "samoylovaann1533@gmail.com"}
 ]
 
+readme = "README.md"
+requires-python = ">=3.8"
+dependencies = [
+    "pandas>=2.3.2,<3.0.0",
+    "jupyterlab>=4.4.7,<5.0.0", 
+    "matplotlib>=3.10.6,<4.0.0",
+    "wget>=3.2,<4.0"
+]
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
