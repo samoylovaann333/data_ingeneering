@@ -18,8 +18,3 @@ wget.download(file_url, file_path)
 # Читаем CSV
 raw_data = pd.read_csv(file_path, sep=' ', encoding='latin1')
 print(raw_data.head(10))
-<<<<<<< HEAD
-
-
-=======
->>>>>>> 234c1f0 (Добавлен скриншот вывода raw_data.head(10))
