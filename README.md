@@ -6,4 +6,4 @@ Genetic disorders are health conditions caused by DNA mutations or chromosomal a
 As populations grow, studies indicate a concerning rise in the incidence of these disorders. A significant factor is the low public awareness of genetic testing's importance. To combat this and prevent tragic outcomes, it is crucial to perform genetic screening during pregnancy.
 
 ## Первые 10 строк после выполнения команды:
-![Результат работы скрипта](screenshot.png)
+![Результат работы скрипта](scrnshot.png)
