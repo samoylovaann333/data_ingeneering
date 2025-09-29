@@ -16,22 +16,22 @@ class DataLoader:
         
         os.makedirs(self.data_folder, exist_ok=True)
         
-        print("📥 Скачивание данных с Google Drive...")
+        print(" Скачивание данных с Google Drive...")
         wget.download(file_url, self.file_path)
-        print("\n✅ Данные скачаны!")
+        print("\n Данные скачаны!")
         
         self.df = pd.read_csv(self.file_path, encoding='latin1')
-        print(f"📊 Загружено данных: {self.df.shape}")
+        print(f" Загружено данных: {self.df.shape}")
         return self.df
     
     def load_data(self):
         """Загрузка данных"""
         if os.path.exists(self.file_path):
-            print("📁 Загрузка существующих данных...")
+            print(" Загрузка существующих данных...")
             self.df = pd.read_csv(self.file_path, encoding='latin1')
-            print(f"📊 Загружено: {self.df.shape}")
+            print(f" Загружено: {self.df.shape}")
         else:
-            print("📥 Файл не найден, скачиваем с Google Drive...")
+            print(" Файл не найден, скачиваем с Google Drive...")
             self.download_and_load_data()
         
         return self.df
@@ -41,7 +41,7 @@ class DataLoader:
         if self.df is None:
             raise ValueError("Сначала загрузите данные!")
         
-        print("\n🔍 ДЕТАЛЬНЫЙ АНАЛИЗ ДАННЫХ:")
+        print("\n ДЕТАЛЬНЫЙ АНАЛИЗ ДАННЫХ:")
         print("=" * 50)
         
         analysis_results = {}
@@ -88,7 +88,7 @@ class DataLoader:
             }
             
             # Вывод информации о колонке
-            print(f"\n📋 {col}:")
+            print(f"\n {col}:")
             print(f"   Тип: {data_type} ({subtype})")
             print(f"   Null: {null_count}/{total_count} ({null_count/total_count*100:.1f}%)")
             print(f"   Уникальных: {unique_count} ({unique_count/total_count*100:.1f}%)")
@@ -103,14 +103,14 @@ class DataLoader:
         if self.df is None:
             raise ValueError("Сначала загрузите данные!")
         
-        print("\n🔧 УМНОЕ ПРИВЕДЕНИЕ ТИПОВ ДАННЫХ:")
+        print("\n УМНОЕ ПРИВЕДЕНИЕ ТИПОВ ДАННЫХ:")
         print("=" * 50)
         
         # Анализируем данные
         analysis = self.analyze_data()
         
         memory_before = self.df.memory_usage(deep=True).sum() / 1024**2
-        print(f"\n💾 Память до оптимизации: {memory_before:.2f} MB")
+        print(f"\n Память до оптимизации: {memory_before:.2f} MB")
         
         df_optimized = self.df.copy()
         
@@ -132,38 +132,38 @@ class DataLoader:
                         if min_val >= 0:
                             if max_val <= 255:
                                 df_optimized[col] = numeric_values.astype('uint8')
-                                print(f"🔢 {col} -> uint8 (целые, 0-255)")
+                                print(f" {col} -> uint8 (целые, 0-255)")
                             elif max_val <= 65535:
                                 df_optimized[col] = numeric_values.astype('uint16')
-                                print(f"🔢 {col} -> uint16 (целые, 0-65535)")
+                                print(f" {col} -> uint16 (целые, 0-65535)")
                             else:
                                 df_optimized[col] = numeric_values.astype('uint32')
-                                print(f"🔢 {col} -> uint32 (целые, >65535)")
+                                print(f" {col} -> uint32 (целые, >65535)")
                         else:
                             df_optimized[col] = numeric_values.astype('int32')
-                            print(f"🔢 {col} -> int32 (целые со знаком)")
+                            print(f" {col} -> int32 (целые со знаком)")
                     else:
                         # Дробные числа
                         df_optimized[col] = numeric_values.astype('float32')
-                        print(f"🔢 {col} -> float32 (дробные)")
+                        print(f" {col} -> float32 (дробные)")
                 
                 elif data_type == "numeric_mixed":
                     # Смешанные данные - используем float для безопасности
                     numeric_values = pd.to_numeric(df_optimized[col], errors='coerce')
                     df_optimized[col] = numeric_values.astype('float32')
-                    print(f"🔢 {col} -> float32 (смешанные, {info['nan_count']} NaN)")
+                    print(f" {col} -> float32 (смешанные, {info['nan_count']} NaN)")
                 
                 else:  # text
                     # Текстовые данные
                     if subtype == "low_cardinality":
                         df_optimized[col] = df_optimized[col].astype('category')
-                        print(f"🏷️  {col} -> category ({info['unique_count']} уникальных)")
+                        print(f"  {col} -> category ({info['unique_count']} уникальных)")
                     else:
                         df_optimized[col] = df_optimized[col].astype('string')
-                        print(f"📝 {col} -> string")
+                        print(f" {col} -> string")
                         
             except Exception as e:
-                print(f"⚠️  Ошибка в колонке {col}: {e}")
+                print(f" Ошибка в колонке {col}: {e}")
                 continue
         
         self.df = df_optimized
@@ -171,10 +171,10 @@ class DataLoader:
         memory_after = self.df.memory_usage(deep=True).sum() / 1024**2
         memory_saved = memory_before - memory_after
         
-        print(f"\n💾 Память после оптимизации: {memory_after:.2f} MB")
-        print(f"💾 Экономия памяти: {memory_saved:.2f} MB ({memory_saved/memory_before*100:.1f}%)")
+        print(f"\n Память после оптимизации: {memory_after:.2f} MB")
+        print(f" Экономия памяти: {memory_saved:.2f} MB ({memory_saved/memory_before*100:.1f}%)")
         
-        print("✅ Типы данных приведены!")
+        print(" Типы данных приведены!")
         return self.df
 
     def convert_data_types(self):
@@ -193,10 +193,10 @@ class DataLoader:
         
         if format.lower() == 'parquet':
             self.df.to_parquet(file_path, index=False)
-            print(f"💾 Сохранено в Parquet: {file_path}")
+            print(f" Сохранено в Parquet: {file_path}")
         elif format.lower() == 'csv':
             self.df.to_csv(file_path, index=False)
-            print(f"💾 Сохранено в CSV: {file_path}")
+            print(f" Сохранено в CSV: {file_path}")
         else:
             raise ValueError(f"Неизвестный формат: {format}")
         
@@ -205,7 +205,7 @@ class DataLoader:
     def show_info(self):
         """Показать информацию о данных"""
         if self.df is not None:
-            print(f"\n📊 ИНФОРМАЦИЯ О ДАННЫХ:")
+            print(f"\n ИНФОРМАЦИЯ О ДАННЫХ:")
             print(f"Размер данных: {self.df.shape}")
             print(f"Типы данных:")
             for col, dtype in self.df.dtypes.items():
