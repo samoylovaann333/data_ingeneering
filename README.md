@@ -36,7 +36,7 @@
 - Предобработку данных для анализа
 
 ## Первые 10 строк после выполнения команды:
-![Результат работы скрипта](scrnshot.png)
+![Результат работы скрипта](data_loader_project/scrnshot.png)
 
 **Технологии:** Python, Pandas, Data Validation, ETL processes
 
