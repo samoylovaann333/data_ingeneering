@@ -1,0 +1,32 @@
+============================================================
+NCBI Gene Data Parser
+============================================================
+Парсинг данных о генах с NCBI...
+Парсим данные для гена BRCA1...
+Парсим данные для гена TP53...
+Парсим данные для гена EGFR...
+Парсим данные для гена CFTR...
+Парсим данные для гена HBB...
+
+Данные успешно распарсены
+Размер таблицы: (5, 6)
+
+Таблица генов:
+================================================================================
+gene_symbol gene_id chromosome location                                                                                                                                                                                                 description source
+      BRCA1     N/A        N/A      N/A This gene encodes a 190 kD nuclear phosphoprotein that plays a role in maintaining genomic stability, and it also acts as a tumor suppressor. The BRCA1 gene contains 22 exons spanning about 110 kb of ...   NCBI
+       TP53     N/A        N/A      N/A This gene encodes a tumor suppressor protein containing transcriptional activation, DNA binding, and oligomerization domains. The encoded protein responds to diverse cellular stresses to regulate expr...   NCBI
+       EGFR     N/A        N/A      N/A The protein encoded by this gene is a transmembrane glycoprotein that is a member of the protein kinase superfamily. This protein is a receptor for members of the epidermal growth factor family. EGFR ...   NCBI
+       CFTR     N/A        N/A      N/A This gene encodes a member of the ATP-binding cassette (ABC) transporter superfamily. The encoded protein functions as a chloride channel, making it unique among members of this protein family, and co...   NCBI
+        HBB     N/A        N/A      N/A                                                                                                                                                                                                         N/A   NCBI
+
+Информация о данных:
+========================================
+Колонки: ['gene_symbol', 'gene_id', 'chromosome', 'location', 'description', 'source']
+Всего записей: 5
+
+Статистика по хромосомам:
+========================================
+chromosome
+N/A    5
+Name: count, dtype: int64
