@@ -6,11 +6,11 @@ def load_data(transformed_df: pd.DataFrame, db_path: str = 'medical_data.db') ->
     """
     Load transformed data to SQLite database and save as parquet
     """
-    print("📤 Начало загрузки данных...")
+    print(" Начало загрузки данных...")
     
     # Проверяем что данные не пустые
     if transformed_df.empty:
-        print("❌ Ошибка: нет данных для загрузки")
+        print(" Ошибка: нет данных для загрузки")
         return
     
     # 1. Сохраняем в Parquet (все данные)
@@ -19,17 +19,17 @@ def load_data(transformed_df: pd.DataFrame, db_path: str = 'medical_data.db') ->
     
     try:
         transformed_df.to_parquet(parquet_path, index=False)
-        print(f"💾 Данные сохранены в Parquet: {parquet_path}")
+        print(f" Данные сохранены в Parquet: {parquet_path}")
         
         if os.path.exists(parquet_path):
             file_size = os.path.getsize(parquet_path) / 1024 / 1024
             print(f"   • Размер файла: {file_size:.2f} MB")
     except Exception as e:
-        print(f"❌ Ошибка сохранения Parquet: {e}")
+        print(f" Ошибка сохранения Parquet: {e}")
         raise
     
     # 2. Загружаем в SQLite (максимум 100 строк)
-    print(f"🗄️  Загрузка в базу данных: {db_path}")
+    print(f"  Загрузка в базу данных: {db_path}")
     
     try:
         engine = create_engine(f'sqlite:///{db_path}')
@@ -60,7 +60,7 @@ def load_data(transformed_df: pd.DataFrame, db_path: str = 'medical_data.db') ->
             result = conn.execute(text(f"SELECT COUNT(*) FROM {table_name}"))
             row_count = result.scalar()
         
-        print(f"✅ Данные загружены в SQLite:")
+        print(f" Данные загружены в SQLite:")
         print(f"   • Таблица: {table_name}")
         print(f"   • Записей: {row_count}")
         print(f"   • Колонок: {len(sample_df.columns)}")
@@ -70,29 +70,29 @@ def load_data(transformed_df: pd.DataFrame, db_path: str = 'medical_data.db') ->
             print(f"   • Пример колонок: {list(sample_df.columns[:5])}")
         
     except Exception as e:
-        print(f"❌ Ошибка при загрузке в БД: {e}")
+        print(f" Ошибка при загрузке в БД: {e}")
         raise
     
     # 3. Финальная валидация
-    print("🔍 Финальная валидация...")
+    print(" Финальная валидация...")
     
     # Проверяем Parquet файл
     if os.path.exists(parquet_path):
         try:
             parquet_df = pd.read_parquet(parquet_path)
             if len(parquet_df) == len(transformed_df):
-                print("   ✅ Parquet файл содержит все данные")
+                print("    Parquet файл содержит все данные")
             else:
-                print(f"   ⚠️  Parquet: {len(parquet_df)} строк (исходно: {len(transformed_df)})")
+                print(f"     Parquet: {len(parquet_df)} строк (исходно: {len(transformed_df)})")
         except Exception as e:
-            print(f"   ❌ Ошибка чтения Parquet: {e}")
+            print(f"    Ошибка чтения Parquet: {e}")
     
     # Проверяем что в БД ровно 100 строк или меньше если данных мало
     expected_rows = min(100, len(transformed_df))
     if row_count == expected_rows:
-        print(f"   ✅ В БД загружено {row_count} строк (как и ожидалось)")
+        print(f"    В БД загружено {row_count} строк (как и ожидалось)")
     else:
-        print(f"   ⚠️  В БД загружено {row_count} строк (ожидалось {expected_rows})")
+        print(f"     В БД загружено {row_count} строк (ожидалось {expected_rows})")
 
 if __name__ == "__main__":
     # Тестирование модуля
@@ -104,4 +104,4 @@ if __name__ == "__main__":
     test_df = load_data("/Users/anna/data_loader_project_clean/data/optimized_dataset.parquet")
     transformed_df = transform_data(test_df)
     load_data(transformed_df)
-    print("✅ Модуль load работает корректно")
+    print(" Модуль load работает корректно")

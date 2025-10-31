@@ -18,27 +18,27 @@ def run_etl_pipeline(input_path: str, db_path: str = 'medical_data.db'):
         db_path: Path to SQLite database
     """
     print("=" * 60)
-    print("🚀 ЗАПУСК ETL ПАЙПЛАЙНА")
+    print(" ЗАПУСК ETL ПАЙПЛАЙНА")
     print("=" * 60)
     
     try:
         # Extract
-        print("\n📥 ЭТАП 1: EXTRACT")
+        print("\n ЭТАП 1: EXTRACT")
         print("-" * 30)
         raw_df = extract_data(input_path)
         
         # Transform
-        print("\n🔄 ЭТАП 2: TRANSFORM")
+        print("\n ЭТАП 2: TRANSFORM")
         print("-" * 30)
         transformed_df = transform_data(raw_df)
         
         # Load
-        print("\n📤 ЭТАП 3: LOAD")
+        print("\n ЭТАП 3: LOAD")
         print("-" * 30)
         load_to_db(transformed_df, db_path)
         
         print("\n" + "=" * 60)
-        print("🎉 ETL ПАЙПЛАЙН УСПЕШНО ЗАВЕРШЕН!")
+        print(" ETL ПАЙПЛАЙН УСПЕШНО ЗАВЕРШЕН!")
         print("=" * 60)
         print("📁 Результаты:")
         print(f"   • Сырые данные: data/raw/raw_data.csv")
@@ -47,7 +47,7 @@ def run_etl_pipeline(input_path: str, db_path: str = 'medical_data.db'):
         print(f"   • Таблица: medical_data (100 записей)")
         
     except Exception as e:
-        print(f"\n❌ ОШИБКА В ПАЙПЛАЙНЕ: {e}")
+        print(f"\n ОШИБКА В ПАЙПЛАЙНЕ: {e}")
         sys.exit(1)
 
 def main():
