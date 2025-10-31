@@ -1,108 +1,97 @@
-# Data Engineering Projects
+# Medical Data Engineering Pipeline
 
-Репозиторий для проектов по инженерии данных.
+Проект по инженерии данных для обработки и анализа медицинских данных о генетических нарушениях.
 
-## О датасете
+## О проекте
 
-### Genetic Disorders Prediction
-Работа с медицинскими данными для прогнозирования генетических нарушений.
+Проект представляет собой полный ETL пайплайн для обработки медицинских данных, включая загрузку, очистку, трансформацию и анализ данных о генетических нарушениях у пациентов.
 
-**Источники данных:**
+## Источники данных
 - [Kaggle: Predict the Genetic Disorders Dataset](https://www.kaggle.com/datasets/aibuzz/predict-the-genetic-disorders-datasetof-genomes)
 - [Google Drive: Diabetes Dataset](https://drive.google.com/file/d/1aUvCzNoEHzLiKqYh9t9MZ-8wU-qtNFNS/view?usp=drive_link)
 
-**Контекст:**
-Генетические нарушения - это заболевания, вызванные мутациями ДНК или хромосомными аномалиями. Многие известные болезни связаны с этими унаследованными мутациями. Генетическое тестирование - это важный инструмент, который позволяет пациентам принимать обоснованные решения о профилактике, лечении и раннем выявлении.
-
-С ростом населения исследования показывают тревожное увеличение частоты этих нарушений. Значительным фактором является низкая осведомленность общественности о важности генетического тестирования. Для борьбы с этим и предотвращения трагических исходов крайне важно проводить генетический скрининг во время беременности.
+**Контекст**: 
+Генетические нарушения - заболевания, вызванные мутациями ДНК или хромосомными аномалиями. Проект направлен на анализ медицинских данных для выявления закономерностей и подготовки данных для построения прогнозных моделей.
 
 ## Структура проекта
-data_ingeneering/
-├── experiments/ # Экспериментальные и пробные версии кода
-│ ├── api_example/ # Пример работы с Genomic API (Ensembl)
-│ ├── data_loader_project/ # Пробная версия загрузки данных
-│ ├── parse_example/ # Пример парсинга данных
-│ └── src/ # Пробные версии скриптов
-│ ├── creds.py # Скрипт для проверки учетных данных
-│ └── write_to_db.py # Пробная версия записи в БД (ДЗ №6)
-├── etl/ # Актуальный ETL пайплайн (ДЗ №8)
-├── notebooks/ # Ноутбуки для анализа данных
-├── data/ # Данные (исключены из Git)
-└── requirements.txt # Зависимости проекта
 
-text
+**medical_data_pipeline/**
+- **etl/** - Основной ETL пайплайн
+  - extract.py - Загрузка данных
+  - transform.py - Очистка и трансформация
+  - load.py - Сохранение в БД и файлы
+  - main.py - CLI интерфейс
+  - validate.py - Валидация данных
+  - `__init__.py` - Инициализация пакета ETL (версия 1.0.0)
+- **notebooks/** - Анализ и визуализация
+  - EDA.ipynb - Разведочный анализ данных
+  - eda_screenshot.png - Скриншоты анализа
+- **experiments/** - Экспериментальные версии
+  - api_example/ - Работа с Genomic API
+  - data_loader_project/ - Альтернативная загрузка
+  - parse_example/ - Примеры парсинга
+  - src/ - Вспомогательные утилиты
+    - creds.py - Утилиты для работы с БД
+    - write_to_db.py - Альтернативная запись в БД
+- requirements.txt - Зависимости
 
-## Проекты
+## Основные компоненты
 
-### [experiments/api_example](experiments/api_example/) - Genomics API Reader
-Проект для работы с Genomic API (Ensembl). Включает:
-- Загрузку данных о генах через REST API
-- Обработку и анализ геномных данных
-- Визуализацию результатов
+### ETL Pipeline (`etl/`)
 
-**Технологии:** Python, Pandas, Requests, Ensembl REST API
+Полный пайплайн обработки данных от загрузки до сохранения:
 
-### [experiments/data_loader_project](experiments/data_loader_project/) - Data Loading and Validation
-Проект для загрузки и валидации медицинских данных. Включает:
-- Загрузку данных из Google Drive
-- Валидацию и очистку медицинских данных
-- Автоматическое определение типов данных
-- Предобработку данных для анализа
+- **Extract**: Загрузка данных из Parquet/CSV/URL
+- **Transform**: Очистка, приведение типов, обработка пропусков
+- **Load**: Сохранение в SQLite и Parquet файлы
 
-**Технологии:** Python, Pandas, Data Validation, ETL processes
-
-### [notebooks](notebooks/) - Exploratory Data Analysis
-Jupyter ноутбуки для разведочного анализа данных:
-- EDA медицинских данных пациентов (ДЗ №5, №7)
-- Анализ структуры и качества данных
-- Визуализация распределений и выбросов с использованием Seaborn
-
-**Технологии:** Python, Pandas, Jupyter, Seaborn, Data Analysis
-
-[View EDA notebook on nbviewer](https://nbviewer.org/github/samoylovaann333/data_ingeneering/blob/main/notebooks/EDA.ipynb)
-
-## ETL Pipeline (ДЗ №8)
-
-### Структура пакета `etl`:
-- `extract.py` - загрузка данных из Parquet/CSV/URL
-- `transform.py` - очистка и трансформация медицинских данных  
-- `load.py` - сохранение в SQLite и Parquet
-- `main.py` - CLI интерфейс для запуска пайплайна
-- `validate.py` - функции валидации данных
-
-### Запуск ETL пайплайна:
-
+**Запуск пайплайна:**
 ```bash
-# Используя медицинские данные
-python -m etl.main --input "/Users/anna/data_loader_project_clean/data/optimized_dataset.parquet"
+python -m etl.main --input "path/to/data.parquet" --db "medical_data.db"
 
-# С кастомной базой данных
-python -m etl.main --input "data.csv" --db "my_database.db"
-Результат выполнения:
-Сырые данные: data/raw/raw_data.csv
+## Data Analysis (notebooks/)
+Jupyter ноутбуки для анализа данных:
 
-Обработанные данные: data/processed/processed_data.parquet
+* **Разведочный анализ (EDA)**
+* **Визуализация распределений**
+* **Анализ корреляций и выбросов**
+* **Просмотр EDA анализа**
 
-База данных: medical_data.db с таблицей medical_data (100 записей)
+## Experimental Code (experiments/)
+Экспериментальные и учебные реализации:
 
-Домашние задания
-ДЗ №5: EDA анализ медицинских данных
+* **Работа с Genomic API (Ensembl)**
+* **Альтернативные методы загрузки данных**
+* **Примеры парсинга и обработки**
 
-ДЗ №6: Запись данных в PostgreSQL (experiments/src/write_to_db.py)
-
-ДЗ №7: Визуализации Seaborn в EDA ноутбуке
-
-ДЗ №8: Полный ETL пайплайн (etl/)
-
-Установка и запуск
-Общие зависимости:
-bash
+## Установка и запуск
+**Установка зависимостей:**
+```bash
 pip install -r requirements.txt
-Зависимости для ETL пайплайна:
-bash
-pip install pandas sqlalchemy pyarrow python-dotenv
-Автор
+```
+
+**Основные зависимости:**
+* pandas
+* sqlalchemy
+* pyarrow
+* seaborn
+* matplotlib
+* jupyter
+
+**Запуск ETL пайплайна:**
+```bash
+python -m etl.main --input "data/medical_data.parquet"
+```
+
+## Результаты работы
+После выполнения пайплайна создаются:
+
+* **data/raw/raw_data.csv** - сырые данные
+* **data/processed/processed_data.parquet** - обработанные данные
+* **medical_data.db** - SQLite база с образцом данных (100 записей)
+
+## Автор
 Анна Самойлова
 
-Лицензия
-Проекты распространяются под лицензией MIT. Подробнее см. в файле LICENSE.
+## Лицензия
+MIT License
