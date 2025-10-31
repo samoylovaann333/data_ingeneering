@@ -30,3 +30,25 @@ Desktop.ini
 
 # Jupyter notebooks
 .ipynb_checkpoints/
+
+# ===== ДОБАВЛЕНО ДЛЯ БЕЗОПАСНОСТИ ДЗ №6 =====
+# Файлы с учетными данными
+.env
+creds.db
+*.db
+
+# Данные проекта
+*.parquet
+*.csv
+*.xlsx
+data/
+datasets/
+
+# Резервные копии
+*.bak
+*_backup*
+backup/
+
+# Локальные настройки
+config.local.*
+settings.local.*
