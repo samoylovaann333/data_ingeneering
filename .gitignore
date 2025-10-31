@@ -31,7 +31,6 @@ Desktop.ini
 # Jupyter notebooks
 .ipynb_checkpoints/
 
-# ===== ДОБАВЛЕНО ДЛЯ БЕЗОПАСНОСТИ ДЗ №6 =====
 # Файлы с учетными данными
 .env
 creds.db
