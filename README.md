@@ -9,7 +9,7 @@
 
 **Источники данных:**
 - [Kaggle: Predict the Genetic Disorders Dataset](https://www.kaggle.com/datasets/aibuzz/predict-the-genetic-disorders-datasetof-genomes)
-- [Google Drive: Diabetes Dataset](https://drive.google.com/file/d/16T11Jo7CuSfgaadz5CLdwTyQRvrDLvSM/view?usp=drive_link)
+- [Google Drive: Diabetes Dataset](https://drive.google.com/file/d/16T11Jo7CuSfgaadz5CLdwTyQRvrDLvSM/view)
 
 **Контекст:**
 Генетические нарушения - это заболевания, вызванные мутациями ДНК или хромосомными аномалиями. Многие известные болезни связаны с этими унаследованными мутациями. Генетическое тестирование - это важный инструмент, который позволяет пациентам принимать обоснованные решения о профилактике, лечении и раннем выявлении.
