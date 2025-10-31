@@ -16,9 +16,25 @@
 
 С ростом населения исследования показывают тревожное увеличение частоты этих нарушений. Значительным фактором является низкая осведомленность общественности о важности генетического тестирования. Для борьбы с этим и предотвращения трагических исходов крайне важно проводить генетический скрининг во время беременности.
 
-## Структура проектов
+## Структура проекта
+data_ingeneering/
+├── experiments/ # Экспериментальные и пробные версии кода
+│ ├── api_example/ # Пример работы с Genomic API (Ensembl)
+│ ├── data_loader_project/ # Пробная версия загрузки данных
+│ ├── parse_example/ # Пример парсинга данных
+│ └── src/ # Пробные версии скриптов
+│ ├── creds.py # Скрипт для проверки учетных данных
+│ └── write_to_db.py # Пробная версия записи в БД (ДЗ №6)
+├── etl/ # Актуальный ETL пайплайн (ДЗ №8)
+├── notebooks/ # Ноутбуки для анализа данных
+├── data/ # Данные (исключены из Git)
+└── requirements.txt # Зависимости проекта
 
-### [api_example](api_example/) - Genomics API Reader
+text
+
+## Проекты
+
+### [experiments/api_example](experiments/api_example/) - Genomics API Reader
 Проект для работы с Genomic API (Ensembl). Включает:
 - Загрузку данных о генах через REST API
 - Обработку и анализ геномных данных
@@ -26,9 +42,7 @@
 
 **Технологии:** Python, Pandas, Requests, Ensembl REST API
 
-![Вывод API скрипта](api_example/result_output_screenshot.png)
-
-### [data_loader_project](data_loader_project/) - Data Loading and Validation
+### [experiments/data_loader_project](experiments/data_loader_project/) - Data Loading and Validation
 Проект для загрузки и валидации медицинских данных. Включает:
 - Загрузку данных из Google Drive
 - Валидацию и очистку медицинских данных
@@ -37,21 +51,17 @@
 
 **Технологии:** Python, Pandas, Data Validation, ETL processes
 
-![Первые 10 строк датасета](data_loader_project/scrnshot.png)
-
 ### [notebooks](notebooks/) - Exploratory Data Analysis
 Jupyter ноутбуки для разведочного анализа данных:
-- EDA медицинских данных пациентов
+- EDA медицинских данных пациентов (ДЗ №5, №7)
 - Анализ структуры и качества данных
-- Визуализация распределений и выбросов
+- Визуализация распределений и выбросов с использованием Seaborn
 
-**Технологии:** Python, Pandas, Jupyter, Data Analysis
-
-### EDA Analysis
+**Технологии:** Python, Pandas, Jupyter, Seaborn, Data Analysis
 
 [View EDA notebook on nbviewer](https://nbviewer.org/github/samoylovaann333/data_ingeneering/blob/main/notebooks/EDA.ipynb)
 
-### ETL Pipeline 
+## ETL Pipeline (ДЗ №8)
 
 ### Структура пакета `etl`:
 - `extract.py` - загрузка данных из Parquet/CSV/URL
@@ -68,21 +78,29 @@ python -m etl.main --input "/Users/anna/data_loader_project_clean/data/optimized
 
 # С кастомной базой данных
 python -m etl.main --input "data.csv" --db "my_database.db"
+Результат выполнения:
+Сырые данные: data/raw/raw_data.csv
 
-## Установка и запуск
+Обработанные данные: data/processed/processed_data.parquet
 
-Для каждого проекта есть отдельные инструкции в соответствующих папках.
+База данных: medical_data.db с таблицей medical_data (100 записей)
 
-### Общие зависимости:
-```bash
+Домашние задания
+ДЗ №5: EDA анализ медицинских данных
+
+ДЗ №6: Запись данных в PostgreSQL (experiments/src/write_to_db.py)
+
+ДЗ №7: Визуализации Seaborn в EDA ноутбуке
+
+ДЗ №8: Полный ETL пайплайн (etl/)
+
+Установка и запуск
+Общие зависимости:
+bash
 pip install -r requirements.txt
-Пример работы
-Data Loader Project
-https://data_loader_project/scrnshot.png
-
-EDA Analysis
-Анализ завершен. Отчет доступен в ноутбуке
-
+Зависимости для ETL пайплайна:
+bash
+pip install pandas sqlalchemy pyarrow python-dotenv
 Автор
 Анна Самойлова
 
