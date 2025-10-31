@@ -35,10 +35,9 @@
 - Автоматическое определение типов данных
 - Предобработку данных для анализа
 
-## Первые 10 строк после выполнения команды:
-![Результат работы скрипта](data_loader_project/scrnshot.png)
-
 **Технологии:** Python, Pandas, Data Validation, ETL processes
+
+![Первые 10 строк датасета](data_loader_project/scrnshot.png)
 
 ### [notebooks](notebooks/) - Exploratory Data Analysis
 Jupyter ноутбуки для разведочного анализа данных:
@@ -52,13 +51,15 @@ Jupyter ноутбуки для разведочного анализа данн
 
 Для каждого проекта есть отдельные инструкции в соответствующих папках.
 
-
-### Пример работы
-Первые 10 строк датасета после обработки:
+### Общие зависимости:
+```bash
+pip install -r requirements.txt
+Пример работы
+Data Loader Project
 https://data_loader_project/scrnshot.png
 
-EDA анализ в Jupyter:
-https://notebooks/eda_screenshot.png
+EDA Analysis
+Анализ завершен. Отчет доступен в ноутбуке
 
 Автор
 Анна Самойлова
