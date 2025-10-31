@@ -1,14 +1,54 @@
-# Файлы с чувствительными данными
+# Virtual environments
+venv/
+myenv/
+env/
+.venv/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# System files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Logs and temporary files
+*.log
+*.tmp
+*.temp
+
+# Jupyter notebooks
+.ipynb_checkpoints/
+
+# ===== ДОБАВЛЕНО ДЛЯ БЕЗОПАСНОСТИ ДЗ №6 =====
+# Файлы с учетными данными
 .env
 creds.db
 *.db
 
-# Python
-__pycache__/
-*.pyc
-*.pyo
-
-# Данные
+# Данные проекта
 *.parquet
 *.csv
+*.xlsx
 data/
+datasets/
+
+# Резервные копии
+*.bak
+*_backup*
+backup/
+
+# Локальные настройки
+config.local.*
+settings.local.*
