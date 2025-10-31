@@ -51,6 +51,24 @@ Jupyter ноутбуки для разведочного анализа данн
 
 [View EDA notebook on nbviewer](https://nbviewer.org/github/samoylovaann333/data_ingeneering/blob/main/notebooks/EDA.ipynb)
 
+### ETL Pipeline 
+
+### Структура пакета `etl`:
+- `extract.py` - загрузка данных из Parquet/CSV/URL
+- `transform.py` - очистка и трансформация медицинских данных  
+- `load.py` - сохранение в SQLite и Parquet
+- `main.py` - CLI интерфейс для запуска пайплайна
+- `validate.py` - функции валидации данных
+
+### Запуск ETL пайплайна:
+
+```bash
+# Используя медицинские данные
+python -m etl.main --input "/Users/anna/data_loader_project_clean/data/optimized_dataset.parquet"
+
+# С кастомной базой данных
+python -m etl.main --input "data.csv" --db "my_database.db"
+
 ## Установка и запуск
 
 Для каждого проекта есть отдельные инструкции в соответствующих папках.
