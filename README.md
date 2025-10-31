@@ -47,6 +47,10 @@ Jupyter ноутбуки для разведочного анализа данн
 
 **Технологии:** Python, Pandas, Jupyter, Data Analysis
 
+### EDA Analysis
+
+[View EDA notebook on nbviewer](https://nbviewer.org/github/samoylovaann333/data_ingeneering/blob/main/notebooks/EDA.ipynb)
+
 ## Установка и запуск
 
 Для каждого проекта есть отдельные инструкции в соответствующих папках.
